@@ -18,7 +18,7 @@ public class Main {
         server.createContext("/verb", handler(Suppliers.memoize(() -> randomWord("verbs"))));
         server.createContext("/adjective", handler(Suppliers.memoize(() -> randomWord("adjectives"))));
         server.start();
-        System.out.println("Server started - version 2");
+        System.out.println("Server started - v3");
     }
 
     private static String randomWord(String table) {
