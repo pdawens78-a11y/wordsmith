@@ -1,0 +1,18 @@
+services:
+  web:
+    build: ./web
+    image: wordsmith-web
+    ports:
+      - "8080:80"
+    depends_on:
+      - words
+
+  words:
+    build: ./words
+    image: wordsmith-words
+    depends_on:
+      - db
+
+  db:
+    build: ./db
+    image: wordsmith-db
