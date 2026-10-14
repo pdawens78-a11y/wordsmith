@@ -1,18 +1,21 @@
 services:
   web:
-    build: ./web
-    image: wordsmith-web
+    image: dhpierre/wordsmith:web
     ports:
       - "8080:80"
     depends_on:
       - words
 
   words:
-    build: ./words
-    image: wordsmith-words
+    image: dhpierre/wordsmith:words
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
-    build: ./db
-    image: wordsmith-db
+    image: dhpierre/wordsmith:db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U postgres"]
+      interval: 2s
+      timeout: 3s
+      retries: 15
