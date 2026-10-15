@@ -17,7 +17,7 @@ func main() {
 	http.Handle("/words/", http.StripPrefix("/words", fwd))
 	http.Handle("/", http.FileServer(http.Dir("static")))
 
-	fmt.Println("Listening on port 80 - version 3")
+	fmt.Println("Listening on port 80 - v4")
 	http.ListenAndServe(":80", nil)
 }
 
